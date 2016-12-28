@@ -5,6 +5,7 @@ stages:
 .build: &build-job
     stage: build
     cache:
+        key: npm
         paths:
             - node_modules/
             #- $HOME/.yarn-cache
