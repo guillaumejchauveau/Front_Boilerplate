@@ -5,7 +5,7 @@
         "type": "git",
         "url": "git+https://github.com/Maxwellewxam/front-boilerplate.git"
     },
-    "version": "4.1.2",
+    "version": "4.2.0",
     "main": "src/js/app.js",
     "scripts": {
         "build": "cross-env NODE_ENV=production node webpack/build.js",
@@ -20,6 +20,7 @@
         "babel-loader": "^6.2.10",
         "babel-preset-env": "^1.1.1",
         "bourbon": "^4.2.7",
+        "copy-webpack-plugin": "^4.0.1",
         "cross-env": "^3.1.3",
         "css-loader": "^0.26.1",
         "css-mqpacker": "^5.0.1",
