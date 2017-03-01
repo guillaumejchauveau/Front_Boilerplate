@@ -7,18 +7,19 @@ const webpackConfig = require('./webpack.base')
 
 webpackConfig.output.publicPath = `http://localhost:${config.port}/`
 
-Object.keys(webpackConfig.entry).forEach(key => {
-    webpackConfig.entry[key] = [`${root}/webpack/server-client`, ...webpackConfig.entry[key]]
-})
+Object.keys(webpackConfig.entry)
+      .forEach(key => {
+          webpackConfig.entry[key] = [`${root}/webpack/server-client`, ...webpackConfig.entry[key]]
+      })
 
 webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
 )
 
 webpackConfig.module.rules.forEach(rule => {
-    if (rule.loaders && rule.loaders.includes('css-loader')) {
-        rule.loaders = ['style-loader', ...rule.loaders]
+    if (rule.use && rule.use.includes('css-loader')) {
+        rule.use = ['style-loader', ...rule.use]
     }
 })
 
