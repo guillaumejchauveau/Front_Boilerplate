@@ -51,6 +51,7 @@ sonarqube:preview:
         -D sonar.projectKey=$SONAR_PROJECT_KEY
         -D sonar.branch=$CI_COMMIT_REF_NAME
         -D sonar.login=$SONAR_TOKEN
+        -D sonar.gitlab.project_id=$CI_PROJECT_PATH
         -D sonar.gitlab.commit_sha=$CI_COMMIT_SHA
         -D sonar.gitlab.ref_name=$CI_COMMIT_REF_NAME
 
