@@ -28,7 +28,7 @@ webpackConfig.module.rules.forEach(rule => {
   if (rule.loader && rule.loader === 'babel-loader') {
     rule.use = [
       'babel-loader',
-      'standard-loader',
+      'standard-loader'
     ]
     delete rule.loader
   }

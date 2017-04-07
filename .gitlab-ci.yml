@@ -37,12 +37,12 @@ build:node-7:
     allow_failure: true
     <<: *build-job
 
-sonarqube_preview:
+sonarqube:preview:
     <<: *sonarqube-job
     only:
         - branches
     except:
-        - master
+        #- master
         - dmz
     script: >
         sonar-scanner
