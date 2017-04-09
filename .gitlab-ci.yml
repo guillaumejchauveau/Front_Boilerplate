@@ -11,6 +11,7 @@ stages:
     stage: build
     cache:
         key: npm
+        untracked: true
         paths:
             - node_modules/
             #- $HOME/.yarn-cache
@@ -44,6 +45,7 @@ test:
     stage: test
     cache:
         key: npm
+        untracked: true
         paths:
             - node_modules/
     artifacts:
@@ -60,6 +62,7 @@ test:
     stage: review
     cache:
         key: sonarqube
+        untracked: true
         paths:
             - /root/.sonar/cache
 
