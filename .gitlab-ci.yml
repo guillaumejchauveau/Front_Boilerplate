@@ -76,7 +76,7 @@ test:
 sonarqube:preview:
     <<: *sonarqube-job
     except:
-        #- master
+        - master
         - dmz
     script: >
         sonar-scanner
