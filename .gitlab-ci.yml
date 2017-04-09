@@ -16,10 +16,9 @@ stages:
             #- $HOME/.yarn-cache
     before_script:
         #- npm -q install yarn
-        - ls node_modules
+        #- ./node_modules/.bin/yarn
         - npm -q update
     script:
-        #- ./node_modules/.bin/yarn
         - npm run build
 
 build:node-6:
