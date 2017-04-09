@@ -26,7 +26,7 @@ const server = new WebpackDevServer(compiler, {
   contentBase: config.output,
   hot: true,
   historyApiFallback: config.historyApiFallback,
-  quiet: false,
+  quiet: true,
   noInfo: false,
   publicPath: webpackConfig.output.publicPath,
   stats: {

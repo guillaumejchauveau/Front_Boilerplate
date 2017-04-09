@@ -1,4 +1,6 @@
 const webpack = require('webpack')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const concat = require('friendly-errors-webpack-plugin/src/utils').concat
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 const root = require('./root')
@@ -14,6 +16,34 @@ for (const key in webpackConfig.entry) {
 }
 
 webpackConfig.plugins.push(
+  new FriendlyErrorsWebpackPlugin({
+    clearConsole: false,
+    additionalTransformers: [
+      function (error) { // Stylelint transformer.
+        if (typeof error.webpackError === 'string' && error.webpackError.indexOf('scss') !== -1) {
+          return Object.assign({}, error, {
+            name: 'Stylelint error',
+            type: 'stylelint-error',
+          })
+        }
+        return error
+      }
+    ],
+    additionalFormatters: [ // Stylelint formatter.
+      function (errors) {
+        const styleLintErrors = errors.filter(e => e.type === 'stylelint-error')
+        if (styleLintErrors.length > 0) {
+          const flatten = (accum, curr) => accum.concat(curr)
+          return concat(
+            styleLintErrors
+            .map(error => [error.webpackError, ''])
+            .reduce(flatten, [])
+          )
+        }
+        return []
+      }
+    ]
+  }),
   new StyleLintPlugin({
     emitErrors: false
   }),
@@ -30,6 +60,10 @@ webpackConfig.module.rules.push({
   enforce: 'pre',
   test: /\.js$/,
   loader: 'eslint-loader',
+  options: {
+    emitWarning: true,
+    formatter: require('eslint-formatter-pretty')
+  },
   exclude: [/node_modules/]
 })
 

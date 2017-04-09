@@ -60,6 +60,8 @@ test:
 ####################
 # REVIEW
 ####################
+
+# SonarQube
 .sonarqube: &sonarqube-job
     image: maxwellewxam/sonar-scanner
     stage: review
@@ -72,7 +74,6 @@ test:
             - /root/.sonar/cache
     dependencies:
         - test
-
 sonarqube:preview:
     <<: *sonarqube-job
     except:
@@ -88,7 +89,6 @@ sonarqube:preview:
         -D sonar.gitlab.project_id=$CI_PROJECT_PATH
         -D sonar.gitlab.commit_sha=$CI_COMMIT_SHA
         -D sonar.gitlab.ref_name=$CI_COMMIT_REF_NAME
-
 sonarqube:
     <<: *sonarqube-job
     except:
@@ -99,3 +99,17 @@ sonarqube:
         -D sonar.projectKey=$SONAR_PROJECT_KEY
         -D sonar.branch=$CI_COMMIT_REF_NAME
         -D sonar.login=$SONAR_TOKEN
+
+# Code Climate
+#codeclimate:
+#    image: node:6
+#    stage: review
+#    only:
+#        - branches
+#    except:
+#        - dmz
+#    dependencies:
+#        - test
+#    before_script:
+#        - npm install -g codeclimate-test-reporter
+#    script: codeclimate-test-reporter < coverage/lcov.info
