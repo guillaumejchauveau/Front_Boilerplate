@@ -23,7 +23,7 @@ webpackConfig.plugins.push(
         if (typeof error.webpackError === 'string' && error.webpackError.indexOf('scss') !== -1) {
           return Object.assign({}, error, {
             name: 'Stylelint error',
-            type: 'stylelint-error',
+            type: 'stylelint-error'
           })
         }
         return error
