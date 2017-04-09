@@ -6,7 +6,6 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
-const root = require('./root')
 const config = require('./config')
 const webpackConfig = require('./webpack.base')
 
@@ -39,8 +38,8 @@ webpackConfig.plugins.push(
     })
   },
   new OptimizeCssAssetsPlugin({
-                                cssProcessorOptions: config.optimize.cssnano
-                              }),
+    cssProcessorOptions: config.optimize.cssnano
+  }),
   new webpack.optimize.UglifyJsPlugin(config.optimize.uglifyjs),
   new ImageminPlugin(config.optimize.imagemin),
   new HtmlMinifierPlugin(config.optimize.htmlminifier),

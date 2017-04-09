@@ -7,11 +7,12 @@ webpack(webpackConfig, (err, stats) => {
     throw err
   }
 
-  process.stdout.write(stats.toString({
-                                        colors: true,
-                                        modules: false,
-                                        children: false,
-                                        chunks: false,
-                                        chunkModules: false
-                                      }) + '\n')
+  process.stdout.write(
+    stats.toString({
+      colors: true,
+      modules: false,
+      children: false,
+      chunks: false,
+      chunkModules: false
+    }) + '\n')
 })

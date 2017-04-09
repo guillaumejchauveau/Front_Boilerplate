@@ -6,8 +6,8 @@ const root = require('./root')
 
 const postcss = [
   require('autoprefixer')({
-                            browsers: config.browsers
-                          }),
+    browsers: config.browsers
+  }),
   require('css-mqpacker')()
 ]
 const loaders = {
@@ -87,24 +87,24 @@ module.exports = {
   },
   plugins: [
     new webpack.WatchIgnorePlugin([
-                                    config.output,
-                                    `${root}/node_modules/`,
-                                    `${root}/webpack/`
-                                  ]),
+      config.output,
+      `${root}/node_modules/`,
+      `${root}/webpack/`
+    ]),
     new CopyWebpackPlugin([
-                            {
-                              from: {
-                                glob: `${root}/src/static/**/*`,
-                                dot: true
-                              },
-                              to: config.output,
-                              context: `${root}/src/static`
-                            }
-                          ], {
-                            ignore: [
-                              'empty'
-                            ]
-                          })
+      {
+        from: {
+          glob: `${root}/src/static/**/*`,
+          dot: true
+        },
+        to: config.output,
+        context: `${root}/src/static`
+      }
+    ], {
+      ignore: [
+        'empty'
+      ]
+    })
   ],
   devServer: {
     headers: {'Access-Control-Allow-Origin': '*'}

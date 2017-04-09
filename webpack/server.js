@@ -7,9 +7,9 @@ const webpackConfig = require('./webpack.dev')
 webpackConfig.plugins.push(function () { // Has own context.
   this.plugin('after-emit', (compilation, compileCallback) => {
     for (const assetName in compilation.assets) {
-      if (compilation.assets.hasOwnProperty(assetName)
-          && assetName.match(/\.html$/)
-          && compilation.assets[assetName].emitted) {
+      if (compilation.assets.hasOwnProperty(assetName) &&
+        assetName.match(/\.html$/) &&
+        compilation.assets[assetName].emitted) {
         hotMiddleware.publish({action: 'reload'})
       }
     }

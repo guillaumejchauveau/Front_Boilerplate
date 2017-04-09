@@ -15,8 +15,8 @@ for (const key in webpackConfig.entry) {
 
 webpackConfig.plugins.push(
   new StyleLintPlugin({
-                        emitErrors: false
-                      }),
+    emitErrors: false
+  }),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoEmitOnErrorsPlugin()
 )
@@ -25,13 +25,12 @@ webpackConfig.module.rules.forEach(rule => {
   if (rule.use && rule.use.includes('css-loader')) {
     rule.use = ['style-loader', ...rule.use]
   }
-  if (rule.loader && rule.loader === 'babel-loader') {
-    rule.use = [
-      'babel-loader',
-      'standard-loader'
-    ]
-    delete rule.loader
-  }
+})
+webpackConfig.module.rules.push({
+  enforce: 'pre',
+  test: /\.js$/,
+  loader: 'eslint-loader',
+  exclude: [/node_modules/]
 })
 
 module.exports = webpackConfig

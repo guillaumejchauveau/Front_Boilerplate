@@ -27,7 +27,7 @@ module.exports = {
         ...require('bourbon').includePaths,
         `${root}/src/css`
       ],
-      indentWidth: 4,
+      indentWidth: 2,
       outputStyle: 'expanded'
     }
   },
@@ -42,7 +42,7 @@ module.exports = {
       minifyCSS: true,
       minifyJS: uglifyjs,
       processConditionalComments: true,
-      quoteCharacter: '\"',
+      quoteCharacter: '"',
       removeComments: true,
       removeEmptyAttributes: true,
       removeRedundantAttributes: true
