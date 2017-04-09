@@ -1,7 +1,12 @@
 stages:
     - build
+    - test
     - review
 
+
+####################
+# BUILD
+####################
 .build: &build-job
     stage: build
     cache:
@@ -21,13 +26,6 @@ stages:
         #- ./node_modules/.bin/yarn
         - npm run build
 
-.sonarqube: &sonarqube-job
-    image: maxwellewxam/sonar-scanner
-    stage: review
-    cache:
-        paths:
-            - /root/.sonar/cache
-
 build:node-6:
     image: node:6
     <<: *build-job
@@ -37,12 +35,40 @@ build:node-7:
     allow_failure: true
     <<: *build-job
 
+
+####################
+# TEST
+####################
+test:
+    image: node:6
+    stage: test
+    cache:
+        key: npm
+        paths:
+            - node_modules/
+    artifacts:
+            name: "${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}"
+            paths:
+                - coverage/
+    script: npm test
+
+####################
+# REVIEW
+####################
+.sonarqube: &sonarqube-job
+    image: maxwellewxam/sonar-scanner
+    stage: review
+    cache:
+        key: sonarqube
+        paths:
+            - /root/.sonar/cache
+
 sonarqube:preview:
     <<: *sonarqube-job
     only:
         - branches
     except:
-        #- master
+        - master
         - dmz
     script: >
         sonar-scanner
