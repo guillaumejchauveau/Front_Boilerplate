@@ -1,7 +1,12 @@
+/**
+ * @file ESLint configuration.
+ */
+
 module.exports = {
   root: true,
   extends: 'standard',
   globals: {
+    // Mocha globals.
     describe: true,
     context: true,
     it: true,

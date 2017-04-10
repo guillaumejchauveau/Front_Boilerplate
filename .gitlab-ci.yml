@@ -9,28 +9,31 @@ stages:
 ####################
 .build: &build-job
   stage: build
-  cache:
+  cache: # Used to transmit dependencies amongst jobs.
     key: npm
     paths:
       - node_modules/
       #- $HOME/.yarn-cache
   before_script:
+    # Yarn is not used because it hangs during packages installation.
     #- npm -q install yarn
     #- ./node_modules/.bin/yarn
     - npm -q update
   script:
     - npm run build
 
+# LTS NodeJS version.
 build:node-6:
   image: node:6
   <<: *build-job
-  artifacts:
+  artifacts: # Exports the build.
     name: "${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}"
     paths:
       - build/
       #- yarn.lock
     expire_in: 1h
 
+# Stable NodeJS version, optionnal.
 build:node-7:
   image: node:7
   allow_failure: true
@@ -43,17 +46,19 @@ build:node-7:
 test:
   image: node:6
   stage: test
-  cache:
+  cache: # Retrieves dependencies.
     key: npm
     paths:
       - node_modules/
   dependencies: []
-  artifacts:
+  artifacts: # Exports coverage reports.
     name: "${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}_coverage"
     paths:
       - coverage/
     expire_in: 1h
   before_script:
+    # Cache is not effective, temporary solution,
+    # see https://forum.gitlab.com/t/cache-not-working/5694.
     - npm -q update
   script: npm test
 
@@ -62,6 +67,7 @@ test:
 ####################
 
 # SonarQube
+###########
 .sonarqube: &sonarqube-job
   image: maxwellewxam/sonar-scanner
   stage: review
@@ -69,11 +75,11 @@ test:
     - branches
   cache:
     key: sonarqube
-    untracked: true
     paths:
       - /root/.sonar/cache
   dependencies:
-    - test
+    - test # Retrieves coverage reports.
+# SonarQube GitLab integration.
 sonarqube:preview:
   <<: *sonarqube-job
   except:
@@ -89,6 +95,7 @@ sonarqube:preview:
     -D sonar.gitlab.project_id=$CI_PROJECT_PATH
     -D sonar.gitlab.commit_sha=$CI_COMMIT_SHA
     -D sonar.gitlab.ref_name=$CI_COMMIT_REF_NAME
+# SonarQube analysis.
 sonarqube:
   <<: *sonarqube-job
   except:
@@ -101,6 +108,8 @@ sonarqube:
     -D sonar.login=$SONAR_TOKEN
 
 # Code Climate
+##############
+# Coverage reporting to Code Climate.
 #codeclimate:
 #  image: node:6
 #  stage: review

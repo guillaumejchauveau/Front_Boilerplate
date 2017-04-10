@@ -6,18 +6,33 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
+/**
+ * Configuration variables.
+ * @type {Object}
+ */
 const config = require('./config')
+/**
+ * Absolute path to root folder.
+ * @type {String}
+ */
+const root = require('./root')
+/**
+ * Base webpack configuration.
+ * @type {Object}
+ */
 const webpackConfig = require('./webpack.base')
 
 webpackConfig.plugins.push(
-  new ExtractTextPlugin('css/[name].css'),
-  function () { // Has own context.
+  new ExtractTextPlugin('css/[name].css'), // Extracts CSS chunks.
+  function () { // Plugins need their own context.
     this.plugin('emit', (compilation, compileCallback) => {
+      // Generates CSS load code for each extracted CSS chunks.
       let cssChunksLoad = ''
       compilation.chunks.forEach(chunk => {
         cssChunksLoad += `<link rel="stylesheet" type="text/css" href="css/${chunk.name}.css">`
       })
 
+      // Looks for HTML assets.
       const assets = compilation.assets
       const htmlAssetNames = []
       for (const assetName in assets) {
@@ -26,6 +41,7 @@ webpackConfig.plugins.push(
         }
       }
 
+      // Adds CSS load code to each HTML assets.
       htmlAssetNames.forEach(htmlAssetName => {
         const asset = assets[htmlAssetName]
         const processedHtml = asset.source()
@@ -47,12 +63,15 @@ webpackConfig.plugins.push(
 )
 
 webpackConfig.module.rules.forEach(rule => {
+  // Marks all CSS rules to extract their result.
   if (rule.use && rule.use.includes('css-loader')) {
     rule.loader = ExtractTextPlugin.extract({use: rule.use})
     delete rule['use']
   }
+  // Fixes the path to url-loaded assets since by default it is relative to the HTML files (now it's relative to the
+  // CSS files).
   if (rule.loader && rule.loader === 'url-loader') {
-    rule.query.name = '../' + rule.query.name
+    rule.query.publicPath = `../`
   }
 })
 

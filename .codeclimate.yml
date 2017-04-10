@@ -1,3 +1,7 @@
+###############################
+# Code Climate configuration. #
+###############################
+
 engines:
   eslint:
     enabled: true

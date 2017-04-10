@@ -1,5 +1,13 @@
+/**
+ * @file Build script.
+ */
+
 const webpack = require('webpack')
 
+/**
+ * Build webpack configuration.
+ * @type {Object}
+ */
 const webpackConfig = require('./webpack.build')
 
 webpack(webpackConfig, (err, stats) => {

@@ -1,15 +1,35 @@
+/**
+ * @file Webpack base configuration.
+ */
+
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 
+/**
+ * Configuration variables.
+ * @type {Object}
+ */
 const config = require('./config')
+/**
+ * Absolute path to root folder.
+ * @type {String}
+ */
 const root = require('./root')
 
+/**
+ * PostCSS plugins.
+ * @type {Array}
+ */
 const postcss = [
   require('autoprefixer')({
     browsers: config.browsers
   }),
   require('css-mqpacker')()
 ]
+/**
+ * Common loaders.
+ * @type {Object}
+ */
 const loaders = {
   html: [
     `file-loader?context=${root}/src&name=[path][name].html`,
@@ -36,11 +56,13 @@ module.exports = {
   },
   module: {
     rules: [
+      // JS
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: [/node_modules/]
       },
+      // SCSS
       {
         test: /\.scss$/,
         use: [
@@ -51,10 +73,12 @@ module.exports = {
           }
         ]
       },
+      // CSS
       {
         test: /\.css$/,
         use: loaders.css
       },
+      // Images
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'url-loader',
@@ -63,6 +87,7 @@ module.exports = {
           name: 'img/[name].[ext]'
         }
       },
+      // Fonts
       {
         test: /\.(woff2?|eot|ttf|otf)$/,
         loader: 'url-loader',
@@ -71,14 +96,17 @@ module.exports = {
           name: 'font/[name].[ext]'
         }
       },
+      // JSON
       {
         test: /\.json$/,
         loader: 'json-loader'
       },
+      // PUG
       {
         test: /\.pug$/,
-        use: [...loaders.html, 'pug-html-loader?pretty=    ']
+        use: [...loaders.html, 'pug-html-loader?pretty=  ']
       },
+      // HTML
       {
         test: /\.html$/,
         use: loaders.html
@@ -86,6 +114,7 @@ module.exports = {
     ]
   },
   plugins: [
+    // Ignore output, packages, webpack files.
     new webpack.WatchIgnorePlugin([
       config.output,
       `${root}/node_modules/`,
@@ -93,6 +122,7 @@ module.exports = {
     ]),
     new CopyWebpackPlugin(
       [
+        // Static files copy.
         {
           from: {
             glob: `${root}/src/static/**/*`,
@@ -104,13 +134,10 @@ module.exports = {
       ],
       {
         ignore: [
-          'empty'
+          'empty' // Ignore placeholder files.
         ]
       })
   ],
-  devServer: {
-    headers: {'Access-Control-Allow-Origin': '*'}
-  },
   performance: {
     hints: config.debug ? false : 'warning'
   }

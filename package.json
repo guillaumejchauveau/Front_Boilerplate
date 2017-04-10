@@ -5,13 +5,13 @@
     "type": "git",
     "url": "git+https://github.com/Maxwellewxam/front-boilerplate.git"
   },
-  "version": "4.3.0",
+  "version": "4.3.1",
   "main": "src/js/app.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production node webpack/build.js",
     "clean": "del-cli build/* !build/empty",
-    "dev": "cross-env NODE_ENV=development node webpack/server.js",
-    "test": "karma start"
+    "dev": "cross-env NODE_ENV=development node webpack/dev.js",
+    "test": "cross-env NODE_ENV=testing karma start"
   },
   "author": "Maxwellewxam <maxwellewxamofficial@gmail.com>",
   "license": "ISC",

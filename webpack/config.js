@@ -1,7 +1,19 @@
+/**
+ * @file Configuration variables.
+ */
+
 const glob = require('glob')
 
+/**
+ * Absolute path to root folder.
+ * @type {String}
+ */
 const root = require('./root')
 
+/**
+ * HTML files.
+ * @type {Array}
+ */
 const htmlFiles = glob.sync(`${root}/src/*.@(html|pug)`)
 
 const uglifyjs = {
@@ -12,19 +24,20 @@ const uglifyjs = {
 }
 
 module.exports = {
-  browsers: ['last 2 version'],
+  browsers: ['last 2 version'], // Browser compatibility.
   debug: process.env.NODE_ENV === 'development',
   port: 8080,
   historyApiFallback: false,
   entry: {
-    app: [`${root}/src/js/app.js`, ...htmlFiles]
+    app: [`${root}/src/js/app.js`, ...htmlFiles] // Adds HTML files (or equivalent) as entry points.
   },
   output: `${root}/build/`,
   outputPublicPath: './',
   loaders: {
+    // sass-loader options.
     sass: {
       includePaths: [
-        ...require('bourbon').includePaths,
+        ...require('bourbon').includePaths, // Bourbon files' path.
         `${root}/src/css`
       ],
       indentWidth: 2,
