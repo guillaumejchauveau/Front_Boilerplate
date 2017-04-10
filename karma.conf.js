@@ -67,7 +67,7 @@ module.exports = config => {
     // Enable / disable colors in the output (reporters and logs).
     colors: true,
     // Level of logging.
-    // Possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG.
+    // Possible values: config.LOG_DISABLE, config.LOG_ERROR, config.LOG_WARN, config.LOG_INFO or config.LOG_DEBUG.
     logLevel: config.LOG_INFO,
     // Enable / disable watching file and executing tests whenever any file changes.
     autoWatch: false,
