@@ -1,5 +1,14 @@
 const path = require('path')
 
+const webpackRules = require('./webpack/webpack.dev').module.rules
+webpackRules.push({
+  enforce: 'post',
+  test: /\.js$/,
+  loader: 'istanbul-instrumenter-loader',
+  include: path.resolve('src/js/'),
+  exclude: [/node_modules/]
+})
+
 module.exports = config => {
   config.set({
     basePath: '',
@@ -14,26 +23,7 @@ module.exports = config => {
     webpack: {
       devtool: 'inline-source-map',
       module: {
-        rules: [
-          {
-            enforce: 'pre',
-            test: /\.js$/,
-            loader: 'eslint-loader',
-            exclude: [/node_modules/]
-          },
-          {
-            test: /\.js$/,
-            loader: 'babel-loader',
-            exclude: [/node_modules/]
-          },
-          {
-            enforce: 'post',
-            test: /\.js$/,
-            loader: 'istanbul-instrumenter-loader',
-            include: path.resolve('src/js/'),
-            exclude: [/node_modules/]
-          }
-        ]
+        rules: webpackRules
       }
     },
     webpackMiddleware: {

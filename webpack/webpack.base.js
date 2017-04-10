@@ -91,20 +91,22 @@ module.exports = {
       `${root}/node_modules/`,
       `${root}/webpack/`
     ]),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin(
+      [
+        {
+          from: {
+            glob: `${root}/src/static/**/*`,
+            dot: true
+          },
+          to: config.output,
+          context: `${root}/src/static`
+        }
+      ],
       {
-        from: {
-          glob: `${root}/src/static/**/*`,
-          dot: true
-        },
-        to: config.output,
-        context: `${root}/src/static`
-      }
-    ], {
-      ignore: [
-        'empty'
-      ]
-    })
+        ignore: [
+          'empty'
+        ]
+      })
   ],
   devServer: {
     headers: {'Access-Control-Allow-Origin': '*'}
