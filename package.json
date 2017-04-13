@@ -1,11 +1,13 @@
 {
   "name": "front-boilerplate",
   "description": "Front Boilerplate",
+  "author": "Maxwellewxam <maxwellewxamofficial@gmail.com>",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Maxwellewxam/front-boilerplate.git"
   },
-  "version": "4.3.2",
+  "version": "4.3.3",
   "main": "src/js/app.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production node webpack/build.js",
@@ -13,8 +15,6 @@
     "dev": "cross-env NODE_ENV=development node webpack/dev.js",
     "test": "cross-env NODE_ENV=testing karma start"
   },
-  "author": "Maxwellewxam <maxwellewxamofficial@gmail.com>",
-  "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.7.6",
     "babel-core": "^6.23.1",

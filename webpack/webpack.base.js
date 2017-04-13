@@ -1,5 +1,5 @@
 /**
- * @file Webpack base configuration.
+ * @file Base webpack configuration.
  */
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')

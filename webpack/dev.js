@@ -11,13 +11,13 @@ const WebpackDevServer = require('webpack-dev-server')
  */
 const config = require('./config')
 /**
- * Webpack development configuration.
+ * Development webpack configuration.
  * @type {Object}
  */
 const webpackConfig = require('./webpack.dev')
 
 // Reloads browser if updated file is HTML.
-webpackConfig.plugins.push(function () { // Plugins need their own context.
+webpackConfig.plugins.push(function () {
   this.plugin('after-emit', (compilation, compileCallback) => {
     for (const assetName in compilation.assets) {
       if (compilation.assets.hasOwnProperty(assetName) &&
@@ -30,12 +30,12 @@ webpackConfig.plugins.push(function () { // Plugins need their own context.
     compileCallback()
   })
 })
+
 const compiler = webpack(webpackConfig)
 const hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: () => { /* No-op block */ }
 })
 
-// Webpack server is used for development.
 const server = new WebpackDevServer(compiler, {
   contentBase: config.output,
   hot: true,
@@ -53,9 +53,8 @@ server.use(hotMiddleware)
 
 server.listen(config.port, err => {
   if (err) {
-    console.log(err)
-    return
+    throw err
   }
 
-  console.log(`Listening on ${config.port}`)
+  process.stdout.write(`Listening on ${config.port} \n\n`)
 })

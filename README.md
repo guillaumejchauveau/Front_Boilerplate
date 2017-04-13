@@ -24,6 +24,8 @@ This project provides integrations with:
   - [Code Climate](http://codeclimate.com)
   - [SonarQube](http://sonarqube.org)
 
+For [VueJS](http://vuejs.org) see [these modifications](http://gist.github.com/Maxwellewxam/1c000503b2e6a585ce34991c414c8c30).
+
 ## Configuration
 If not using tests:
   - remove 'test' script in 'package.json'

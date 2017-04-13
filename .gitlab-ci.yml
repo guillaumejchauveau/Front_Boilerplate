@@ -33,7 +33,7 @@ build:node-6:
       #- yarn.lock
     expire_in: 1h
 
-# Stable NodeJS version, optionnal.
+# Stable NodeJS version, optional.
 build:node-7:
   image: node:7
   allow_failure: true

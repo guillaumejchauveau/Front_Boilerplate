@@ -1,3 +1,7 @@
+/**
+ * @file Build webpack configuration.
+ */
+
 const webpack = require('webpack')
 const webpackSources = require('webpack-sources')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -12,11 +16,6 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
  */
 const config = require('./config')
 /**
- * Absolute path to root folder.
- * @type {String}
- */
-const root = require('./root')
-/**
  * Base webpack configuration.
  * @type {Object}
  */
@@ -24,7 +23,7 @@ const webpackConfig = require('./webpack.base')
 
 webpackConfig.plugins.push(
   new ExtractTextPlugin('css/[name].css'), // Extracts CSS chunks.
-  function () { // Plugins need their own context.
+  function () {
     this.plugin('emit', (compilation, compileCallback) => {
       // Generates CSS load code for each extracted CSS chunks.
       let cssChunksLoad = ''
