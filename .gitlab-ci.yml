@@ -23,44 +23,44 @@ stages:
     - npm run build
 
 # LTS NodeJS version.
-#build:node-6:
-#  image: node:6
-#  <<: *build-job
-#  artifacts: # Exports the build.
-#    name: "${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}"
-#    paths:
-#      - build/
+build:node-6:
+  image: node:6
+  <<: *build-job
+  artifacts: # Exports the build.
+    name: "${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}"
+    paths:
+      - build/
       #- yarn.lock
-#    expire_in: 1h
+    expire_in: 1h
 
 # Stable NodeJS version, optional.
-#build:node-7:
-#  image: node:7
-#  allow_failure: true
-#  <<: *build-job
+build:node-7:
+  image: node:7
+  allow_failure: true
+  <<: *build-job
 
 
 ####################
 # TEST
 ####################
-#test:
-#  image: node:6
-#  stage: test
-#  cache: # Retrieves dependencies.
-#    key: npm
-#    paths:
-#      - node_modules/
-#  dependencies: []
-#  artifacts: # Exports coverage reports.
-#    name: "${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}_coverage"
-#    paths:
-#      - coverage/
-#    expire_in: 1h
-#  before_script:
+test:
+  image: node:6
+  stage: test
+  cache: # Retrieves dependencies.
+    key: npm
+    paths:
+      - node_modules/
+  dependencies: []
+  artifacts: # Exports coverage reports.
+    name: "${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}_coverage"
+    paths:
+      - coverage/
+    expire_in: 1h
+  before_script:
     # Cache is not effective, temporary solution,
     # see https://forum.gitlab.com/t/cache-not-working/5694.
-#    - npm -q update
-#  script: npm test
+    - npm -q update
+  script: npm test
 
 ####################
 # REVIEW
@@ -68,14 +68,14 @@ stages:
 
 # Lint
 ######
-lint:
-  image: node:6
-  stage: review
-  dependencies: []
-#  allow_failure: true
-  before_script:
-    - npm install -q eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard htmlhint pug-lint stylelint stylelint-config-standard stylelint-order stylelint-scss
-  script: npm run lint
+#lint:
+#  image: node:6
+#  stage: review
+#  dependencies: []
+  #allow_failure: true
+#  before_script:
+#    - npm -q install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard htmlhint pug-lint stylelint stylelint-config-standard stylelint-order stylelint-scss
+#  script: npm run lint
 
 # SonarQube
 ###########
@@ -89,7 +89,7 @@ lint:
     paths:
       - /root/.sonar/cache
   dependencies:
-    #- test # Retrieves coverage reports.
+    - test # Retrieves coverage reports.
 # SonarQube GitLab integration.
 sonarqube:preview:
   <<: *sonarqube-job
