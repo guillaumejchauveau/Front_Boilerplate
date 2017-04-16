@@ -29,7 +29,7 @@ module.exports = {
   port: 8080,
   historyApiFallback: false,
   entry: {
-    app: [`${root}/src/js/app.js`, ...htmlFiles] // Adds HTML files (or equivalent) as entry points.
+    index: [`${root}/src/js/index.js`, ...htmlFiles] // Adds HTML files (or equivalent) as entry points.
   },
   output: `${root}/build/`,
   outputPublicPath: './',

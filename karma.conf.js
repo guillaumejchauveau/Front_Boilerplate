@@ -4,16 +4,11 @@
 
 const path = require('path')
 
-// Retrieves the development webpack configuration.
-const webpackRules = require('./webpack/webpack.dev').module.rules
-// Add coverage report generation configuration.
-webpackRules.push({
-  enforce: 'post',
-  test: /\.js$/,
-  loader: 'istanbul-instrumenter-loader',
-  include: path.resolve('src/js/'),
-  exclude: [/node_modules/]
-})
+/**
+ * Testing webpack configuration.
+ * @type {Object}
+ */
+const webpack = require('./webpack/webpack.test')
 
 module.exports = config => {
   config.set({
@@ -34,12 +29,7 @@ module.exports = config => {
       'tests/**/*.spec.js': ['webpack']
     },
     // Webpack configuration.
-    webpack: {
-      devtool: 'inline-source-map',
-      module: {
-        rules: webpackRules
-      }
-    },
+    webpack,
     // Webpack middleware configuration.
     webpackMiddleware: {
       noInfo: true,
