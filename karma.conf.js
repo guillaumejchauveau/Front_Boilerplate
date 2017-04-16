@@ -2,8 +2,6 @@
  * @file Karma runner configuration.
  */
 
-const path = require('path')
-
 /**
  * Testing webpack configuration.
  * @type {Object}
