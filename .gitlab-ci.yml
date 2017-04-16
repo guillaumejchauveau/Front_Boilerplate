@@ -73,11 +73,8 @@ lint:
   stage: review
   dependencies: []
 #  allow_failure: true
-  before_script: > npm install -q
-    eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard
-    htmlhint-loader
-    pug-lint
-    stylelint stylelint-config-standard stylelint-order stylelint-scss
+  before_script:
+    - npm install -q eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard htmlhint pug-lint stylelint stylelint-config-standard stylelint-order stylelint-scss
   script: npm run lint
 
 # SonarQube
