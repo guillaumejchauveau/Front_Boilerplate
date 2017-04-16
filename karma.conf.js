@@ -12,6 +12,8 @@ const webpack = require('./webpack/webpack.test')
 
 module.exports = config => {
   config.set({
+    // Webpack configuration.
+    webpack,
     // Base path that will be used to resolve all patterns (eg. files, exclude).
     basePath: '',
     // Frameworks to use.
@@ -28,8 +30,6 @@ module.exports = config => {
     preprocessors: {
       'tests/**/*.spec.js': ['webpack']
     },
-    // Webpack configuration.
-    webpack,
     // Webpack middleware configuration.
     webpackMiddleware: {
       noInfo: true,
