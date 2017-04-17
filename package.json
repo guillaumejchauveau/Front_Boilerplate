@@ -7,8 +7,8 @@
     "type": "git",
     "url": "git+https://github.com/Maxwellewxam/front-boilerplate.git"
   },
-  "version": "4.3.4",
-  "main": "src/js/app.js",
+  "version": "4.3.5",
+  "main": "build/js/index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production node webpack/build.js",
     "clean": "del-cli build/* !build/empty",
