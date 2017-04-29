@@ -24,7 +24,10 @@ This project provides integrations with:
   - [Code Climate](http://codeclimate.com)
   - [SonarQube](http://sonarqube.org)
 
-For [VueJS](http://vuejs.org) see [these modifications](http://gist.github.com/Maxwellewxam/1c000503b2e6a585ce34991c414c8c30).
+
+It can be adapted for:
+  - [VueJS](http://vuejs.org) ([Gist](http://gist.github.com/Maxwellewxam/1c000503b2e6a585ce34991c414c8c30))
+  - [Jekyll](http://jekyllrb.com) ([Gist](http://gist.github.com/Maxwellewxam/826809988572cc35b45681f53c103775))
 
 ## Configuration
 If not using tests:
