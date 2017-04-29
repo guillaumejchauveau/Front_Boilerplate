@@ -33,8 +33,7 @@ const postcss = [
 const loaders = {
   html: [
     `file-loader?context=${root}/src&name=[path][name].html`,
-    `extract-loader?publicPath=${config.outputPublicPath}`,
-    'html-loader'
+    `extract-loader?publicPath=${config.outputPublicPath}`
   ],
   css: [
     'css-loader',
@@ -104,12 +103,20 @@ module.exports = {
       // PUG
       {
         test: /\.pug$/,
-        use: [...loaders.html, 'pug-html-loader?pretty=  ']
+        use: [
+          ...loaders.html,
+          {
+            loader: 'pug-html-loader',
+            options: {
+              pretty: '  '
+            }
+          }
+        ]
       },
       // HTML
       {
         test: /\.html$/,
-        use: loaders.html
+        use: [...loaders.html, 'html-loader']
       }
     ]
   },

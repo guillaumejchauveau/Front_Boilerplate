@@ -28,7 +28,7 @@ For [VueJS](http://vuejs.org) see [these modifications](http://gist.github.com/M
 
 ## Configuration
 If not using tests:
-  - remove 'test' script in 'package.json'
+  - remove testing related uses in CI files
   - remove following dependencies:
     - istanbul-instrumenter-loader
     - karma
@@ -38,7 +38,6 @@ If not using tests:
     - karma-phantomjs-launcher
     - karma-webpack
     - mocha
-  - remove 'tests' folder and 'karma.conf.js' file
 
 Remove commented paths in:
   - .eslintignore
