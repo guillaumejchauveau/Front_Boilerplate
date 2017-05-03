@@ -33,7 +33,8 @@ const postcss = [
 const loaders = {
   html: [
     `file-loader?context=${root}/src&name=[path][name].html`,
-    `extract-loader?publicPath=${config.outputPublicPath}`
+    `extract-loader?publicPath=${config.outputPublicPath}`,
+    'html-loader'
   ],
   css: [
     'css-loader',
@@ -116,7 +117,7 @@ module.exports = {
       // HTML
       {
         test: /\.html$/,
-        use: [...loaders.html, 'html-loader']
+        use: loaders.html
       }
     ]
   },
