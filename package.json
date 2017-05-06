@@ -17,7 +17,7 @@
     "lint": "eslint --max-warnings 1 src/**/*.js tests/**/*.spec.js && stylelint src/**/*.css src/**/*.scss && pug-lint src && htmlhint src/**/*.html"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.6",
+    "autoprefixer": "^7.0.0",
     "babel-core": "^6.23.1",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.1.10",
