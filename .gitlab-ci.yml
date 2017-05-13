@@ -134,5 +134,5 @@ sonarqube:
 #  dependencies:
 #    - test
 #  before_script:
-#    - npm install -g codeclimate-test-reporter
+#    - npm -q install -g codeclimate-test-reporter
 #  script: codeclimate-test-reporter < coverage/lcov.info
