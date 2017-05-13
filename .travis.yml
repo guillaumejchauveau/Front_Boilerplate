@@ -13,11 +13,16 @@ addons:
 
 cache: yarn
 
-script:
-  - npm run build
-  - npm test
-
-after_success:
-  # Code Climate coverage reporting.
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < coverage/lcov.info
+jobs:
+  include:
+    - stage: build
+      script: npm run build
+    - stage: test
+      script: npm test
+      after_success:
+        # Code Climate coverage reporting.
+        - npm install -g codeclimate-test-reporter
+        - codeclimate-test-reporter < coverage/lcov.info
+    - stage: review
+      install: eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard htmlhint pug-lint stylelint stylelint-config-standard stylelint-order stylelint-scss
+      script: npm run lint
