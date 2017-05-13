@@ -18,7 +18,6 @@ script:
   - npm test
 
 after_success:
-  - npm run lint
   # Code Climate coverage reporting.
   - npm install -g codeclimate-test-reporter
   - codeclimate-test-reporter < coverage/lcov.info
