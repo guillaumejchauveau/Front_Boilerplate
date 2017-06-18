@@ -32,9 +32,25 @@ module.exports = {
             'display',
             'width',
             'height',
+            'min-width',
+            'min-height',
+            'max-width',
+            'max-height',
             'margin',
+            'margin-top',
+            'margin-right',
+            'margin-bottom',
+            'margin-left',
             'padding',
-            'border'
+            'padding-top',
+            'padding-right',
+            'padding-bottom',
+            'padding-left',
+            'border',
+            'border-top',
+            'border-right',
+            'border-bottom',
+            'border-left'
           ]
         }
       ],
