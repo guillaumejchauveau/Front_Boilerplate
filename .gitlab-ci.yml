@@ -2,6 +2,7 @@ stages:
   - build
   - test
   - review
+  - dmz
 
 
 ####################
@@ -33,13 +34,13 @@ build:node-6:
       #- yarn.lock
     expire_in: 1h
 
-# Stable NodeJS version, optional.
-build:node-7:
+# Latest NodeJS version, optional.
+build:node-latest:
   <<: *build-job
-  image: node:7
+  image: node
   allow_failure: true
   cache: # Used to transmit dependencies amongst jobs.
-    key: npm:node-7
+    key: npm:node-latest
     paths:
       - node_modules/
       #- $HOME/.yarn-cache
@@ -64,6 +65,7 @@ test:
   before_script:
     - npm -q install
   script: npm test
+
 
 ####################
 # REVIEW
@@ -136,3 +138,21 @@ sonarqube:
 #  before_script:
 #    - npm -q install -g codeclimate-test-reporter
 #  script: codeclimate-test-reporter < coverage/lcov.info
+
+
+####################
+# DMZ
+####################
+
+dmz:
+  image: buildpack-deps:jessie-scm
+  stage: dmz
+  only:
+    - dmz
+  script:
+    - git config user.email "ci-operator@gitlab.flow.local" && git config user.name "CI Operator"
+    - git remote set-url origin http://$CI_OPERATOR_CREDENTIALS@$REMOTE_HOST/$CI_PROJECT_PATH.git
+    - git checkout master
+    - git pull origin master -q
+    - git merge origin/dmz --no-ff -m "Automatic DMZ merge"
+    - git push origin master -q
