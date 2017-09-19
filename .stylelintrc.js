@@ -107,6 +107,8 @@ module.exports = {
         ]
       }
     ],
+    'color-hex-case': 'lower',
+    'color-hex-length': 'long',
     'color-named': 'never',
     'declaration-colon-newline-after': null,
     'declaration-colon-space-after': null,
@@ -133,8 +135,6 @@ module.exports = {
       }
     ],
     'selector-max-compound-selectors': 3,
-    'selector-no-attribute': true,
-    'selector-no-id': true,
     'selector-no-vendor-prefix': true,
     'string-quotes': 'single',
     'value-no-vendor-prefix': true,
