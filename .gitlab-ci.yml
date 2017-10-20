@@ -12,10 +12,9 @@ build:
   stage: build
   image: node:6
   before_script:
-    # Yarn is not used because it hangs during packages installation.
     - npm -q install yarn
-    - ./node_modules/.bin/yarn
-    #- npm -q install
+    - ./node_modules/.bin/yarn cache dir
+    - exit 1
   script:
     - npm run build
   cache: # Used to transmit dependencies amongst jobs.
