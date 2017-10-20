@@ -19,5 +19,6 @@ module.exports = {
   'style-disabled': true,
   'inline-style-disabled': true,
   'inline-script-disabled': true,
-  'space-tab-mixed-disabled': 'space2'
+  'space-tab-mixed-disabled': 'space2',
+  'attr-unsafe-chars': true
 }

@@ -24,7 +24,6 @@ const uglifyjs = {
 }
 
 module.exports = {
-  browsers: ['last 2 version'], // Browser compatibility.
   debug: process.env.NODE_ENV === 'development',
   port: 8080,
   historyApiFallback: false,
@@ -46,12 +45,18 @@ module.exports = {
   },
   optimize: {
     cssnano: {
-      safe: true
+      preset: [
+        'default',
+        {
+          discardComments: {
+            removeAll: true
+          }
+        }
+      ]
     },
     htmlminifier: {
       collapseBooleanAttributes: true,
       collapseWhitespace: true,
-      html5: true,
       minifyCSS: true,
       minifyJS: uglifyjs,
       processConditionalComments: true,
@@ -69,9 +74,6 @@ module.exports = {
         progressive: true
       },
       optipng: {
-        optimizationLevel: 5
-      },
-      svgo: {
         optimizationLevel: 5
       }
     },

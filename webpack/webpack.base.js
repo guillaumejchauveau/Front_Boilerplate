@@ -21,9 +21,7 @@ const root = require('./root')
  * @type {Array}
  */
 const postcss = [
-  require('autoprefixer')({
-    browsers: config.browsers
-  }),
+  require('autoprefixer')(),
   require('css-mqpacker')()
 ]
 /**
