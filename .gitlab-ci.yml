@@ -45,7 +45,7 @@ test:
       - coverage/
     expire_in: 1h
   before_script:
-    - npm -q install
+    - yarn
   script: npm test
 
 
@@ -55,14 +55,18 @@ test:
 
 # Lint
 ######
-lint:
-  image: node:6
-  stage: review
-  dependencies: []
+#lint:
+#  image: node:6
+#  stage: review
+#  cache:
+#      key: npm:lint
+#      paths:
+#        - node_modules/
+#  dependencies: []
   #allow_failure: true
-  before_script:
-    - npm -q install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard htmlhint pug-lint stylelint stylelint-config-standard stylelint-csstree-validator stylelint-declaration-block-no-ignored-properties stylelint-images stylelint-no-unsupported-browser-features stylelint-order stylelint-scss
-  script: npm run lint
+#  before_script:
+#    - npm -q install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard htmlhint pug-lint stylelint stylelint-config-standard stylelint-csstree-validator stylelint-declaration-block-no-ignored-properties stylelint-images stylelint-no-unsupported-browser-features stylelint-order stylelint-scss
+#  script: npm run lint
 
 # SonarQube
 ###########
