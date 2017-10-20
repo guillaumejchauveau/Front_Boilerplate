@@ -9,7 +9,7 @@
 ## Included
 [SCSS](http://sass-lang.com), ES6 with [Babel](http://babeljs.io), [Pug](http://pugjs.org).
 ### Building
-Build is done with [Webpack](http://webpack.js.org).
+Building with [Webpack](http://webpack.js.org).
 ### Linting
 Linting with [ESLint](http://eslint.org), following [Standard](http://standardjs.com) rules, [StyleLint](http://stylelint.io), [HTMLHint](http://htmlhint.com/) and [Pug-lint](http://github.com/pugjs/pug-lint).
 ### Testing
@@ -29,18 +29,6 @@ It can be adapted for:
   - [Jekyll](http://jekyllrb.com) ([Gist](http://gist.github.com/Maxwellewxam/826809988572cc35b45681f53c103775))
 
 ## Configuration
-If not using tests:
-  - remove testing related uses in CI files
-  - remove following dependencies:
-    - istanbul-instrumenter-loader
-    - karma
-    - karma-coverage-istanbul-reporter
-    - karma-mocha
-    - karma-mocha-reporter
-    - karma-phantomjs-launcher
-    - karma-webpack
-    - mocha
-
 Remove commented paths in:
   - .eslintignore
   - .stylelintignore
