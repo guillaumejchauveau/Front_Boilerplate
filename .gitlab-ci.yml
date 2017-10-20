@@ -12,8 +12,7 @@ build:
   stage: build
   image: node:6
   before_script:
-    - npm -q install yarn
-    - ./node_modules/.bin/yarn
+    - yarn
   script:
     - npm run build
   cache: # Used to transmit dependencies amongst jobs.
