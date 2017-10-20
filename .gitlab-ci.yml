@@ -13,15 +13,13 @@ build:
   image: node:6
   before_script:
     - npm -q install yarn
-    - ./node_modules/.bin/yarn cache dir
-    - exit 1
+    - ./node_modules/.bin/yarn
   script:
     - npm run build
   cache: # Used to transmit dependencies amongst jobs.
     key: npm:node-6
     paths:
       - node_modules/
-      - $HOME/.yarn-cache
   artifacts: # Exports the build.
     name: "${CI_COMMIT_REF_NAME}-${CI_JOB_NAME}"
     paths:
@@ -57,14 +55,14 @@ test:
 
 # Lint
 ######
-#lint:
-#  image: node:6
-#  stage: review
-#  dependencies: []
+lint:
+  image: node:6
+  stage: review
+  dependencies: []
   #allow_failure: true
-#  before_script:
-#    - npm -q install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard htmlhint pug-lint stylelint stylelint-config-standard stylelint-order stylelint-scss
-#  script: npm run lint
+  before_script:
+    - npm -q install eslint eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-standard htmlhint pug-lint stylelint stylelint-config-standard stylelint-csstree-validator stylelint-declaration-block-no-ignored-properties stylelint-images stylelint-no-unsupported-browser-features stylelint-order stylelint-scss
+  script: npm run lint
 
 # SonarQube
 ###########
