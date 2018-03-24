@@ -16,15 +16,7 @@ const root = require('./root')
  */
 const htmlFiles = glob.sync(`${root}/src/*.@(html|pug)`)
 
-const uglifyjs = {
-  compress: {
-    warnings: false
-  },
-  comments: false
-}
-
 module.exports = {
-  debug: process.env.NODE_ENV === 'development',
   port: 8080,
   historyApiFallback: false,
   entry: {
@@ -58,7 +50,7 @@ module.exports = {
       collapseBooleanAttributes: true,
       collapseWhitespace: true,
       minifyCSS: true,
-      minifyJS: uglifyjs,
+      minifyJS: true,
       processConditionalComments: true,
       quoteCharacter: '"',
       removeComments: true,
@@ -76,7 +68,6 @@ module.exports = {
       optipng: {
         optimizationLevel: 5
       }
-    },
-    uglifyjs
+    }
   }
 }

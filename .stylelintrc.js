@@ -2,7 +2,7 @@
  * @file StyleLint configuration.
  */
 
-const namingRegex = /^[a-z]+((__|--)?[a-z0-9-]+)*$/
+const namingRegex = /^[a-z]+(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(_[a-z0-9]+(-[a-z0-9]+)*){0,2}$/
 
 module.exports = {
   extends: 'stylelint-config-standard',
@@ -155,7 +155,7 @@ module.exports = {
     'property-no-vendor-prefix': true,
     'selector-attribute-quotes': 'always',
     'selector-class-pattern': [
-      /^(_)?[a-z]+-[a-z0-9-]+((__|--)?[a-z0-9-]+)?(--[a-z0-9-]+)?[a-z0-9]$/,
+      /^(__[a-z0-9]+(-[a-z0-9]+)*)?(_[a-z0-9]+(-[a-z0-9]+)*){0,2}$/,
       {
         resolveNestedSelectors: true
       }

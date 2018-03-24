@@ -1,0 +1,121 @@
+//
+// Variables.
+//
+
+//
+// Colors.
+//
+
+// Main colors.
+//
+$color_primary: #33495d;
+$color_primary-light: lighten($color_primary, 10%);
+$color_primary-dark: darken($color_primary, 10%);
+$color_secondary: #c2392c;
+$color_secondary-light: lighten($color_secondary, 7%);
+$color_secondary-dark: darken($color_secondary, 5%);
+
+// Background colors.
+//
+$bg__color_primary: #fff;
+$bg__color_secondary: #f1f1f1;
+$bg__color_disabled: #dfdfdf;
+$bg__color_dark-primary: #3a3a3a;
+$bg__color_dark-secondary: #222;
+$bg__color_dark-disabled: #404040;
+
+// Text colors.
+//
+$text__color: rgba(0, 0, 0, .87);
+$text__color_soft: rgba(0, 0, 0, .54);
+$text__color_disabled: rgba(0, 0, 0, .26);
+$text__color_light: #fff;
+$text__color_light-soft: rgba(255, 255, 255, .7);
+$text__color_light-disabled: rgba(255, 255, 255, .3);
+
+// Basic overlay colors.
+//
+$overlay__color_1: rgba(0, 0, 0, .1);
+$overlay__color_2: rgba(0, 0, 0, .3);
+$overlay__color_3: rgba(0, 0, 0, .4);
+$overlay__color_light-0: rgba(255, 255, 255, .1);
+$overlay__color_light-1: rgba(255, 255, 255, .2);
+$overlay__color_light-2: rgba(255, 255, 255, .3);
+$overlay__color_light-3: rgba(255, 255, 255, .4);
+
+//
+// Typography.
+//
+
+// Font families.
+//
+$font__family_sans-serif: arial, sans-serif;
+$font__family_serif: Georgia, 'Times New Roman', Times, serif;
+$font__family_monospace: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+$font__family_base: $font__family_sans-serif;
+
+// Font sizes.
+//
+// Pixel value used to responsively scale all typography. Applied to the `<html>` element.
+$font__size_root-xs: 14px;
+$font__size_root-md: 15px;
+$font__size_xs: .75rem;
+$font__size_sm: .875rem;
+$font__size_md: 1rem;
+$font__size_lg: 1.25rem;
+$font__size_base: $font__size_md;
+$font__size_h1: 2.5rem;
+$font__size_h2: 2rem;
+$font__size_h3: 1.75rem;
+$font__size_h4: 1.5rem;
+$font__size_h5: 1.25rem;
+$font__size_h6: 1rem;
+
+// Font weights.
+//
+$font__weight_thin: 100;
+$font__weight_extra-light: 200;
+$font__weight_light: 300;
+$font__weight_normal: 400;
+$font__weight_medium: 500;
+$font__weight_semi-bold: 600;
+$font__weight_bold: 700;
+$font__weight_extra-bold: 800;
+$font__weight_black: 900;
+$font__weight_base: $font__weight_normal;
+
+// Line heights.
+//
+$line__height_base: 1.5;
+
+// Headings.
+//
+$font__family_headings: inherit;
+$font__weight_headings: 500;
+$line__height_headings: 1.1;
+$color_headings: inherit;
+
+//
+// Layout.
+//
+$grid__breakpoints: (
+                      xs: 0,
+                      sm: 560px,
+                      md: 768px,
+                      lg: 992px,
+                      xl: 1200px
+                    );
+$container-widths: (
+                     xs: 90%,
+                     sm: 540px,
+                     md: 720px,
+                     lg: 940px,
+                     xl: 1140px
+                   );
+
+//
+// Transition.
+//
+$transition-time_short: .1s;
+$transition-time: .2s;
+$transition-time_long: .5s;

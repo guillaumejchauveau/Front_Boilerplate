@@ -94,11 +94,6 @@ module.exports = {
           name: 'font/[name].[ext]'
         }
       },
-      // JSON
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
       // PUG
       {
         test: /\.pug$/,
@@ -143,8 +138,5 @@ module.exports = {
           'empty' // Ignore placeholder files.
         ]
       })
-  ],
-  performance: {
-    hints: config.debug ? false : 'warning'
-  }
+  ]
 }

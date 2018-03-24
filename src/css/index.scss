@@ -1,1 +1,87 @@
 @import 'loader';
+//
+// Document.
+//
+html {
+  position:   relative;
+  min-height: 100%;
+  box-sizing: border-box;
+  font-size:  $font__size_root-xs;
+}
+
+@include media-breakpoint-up('md') {
+  html {
+    font-size: $font__size_root-md;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+//
+// Typography.
+//
+
+// Body.
+//
+
+body {
+  background-color: $bg__color_secondary;
+  color:            $text__color;
+  font-family:      $font__family_base;
+  font-size:        $font__size_base;
+  font-weight:      $font__weight_base;
+  line-height:      $line__height_base;
+}
+
+// Headings.
+//
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top:  0;
+  color:       $color_headings;
+  font-family: $font__family_headings;
+  font-weight: $font__weight_headings;
+  line-height: $line__height_headings;
+}
+
+h1 {
+  font-size: $font__size_h1;
+}
+
+h2 {
+  font-size: $font__size_h2;
+}
+
+h3 {
+  font-size: $font__size_h3;
+}
+
+h4 {
+  font-size: $font__size_h4;
+}
+
+h5 {
+  font-size: $font__size_h5;
+}
+
+h6 {
+  font-size: $font__size_h6;
+}
+
+// Paragraphs.
+//
+
+p {
+  margin-top:    0;
+  margin-bottom: 1rem;
+  overflow-wrap: break-word;
+}

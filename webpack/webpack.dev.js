@@ -3,10 +3,10 @@
  */
 
 const webpack = require('webpack')
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const concat = require('friendly-errors-webpack-plugin/src/utils').concat // Tool for custom Friendly Errors Webpack
+//const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+//const concat = require('friendly-errors-webpack-plugin/src/utils').concat // Tool for custom Friendly Errors Webpack
                                                                           // Plugin formatter.
-const StyleLintPlugin = require('stylelint-webpack-plugin')
+//const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 /**
  * Configuration variables.
@@ -24,6 +24,8 @@ const root = require('./root')
  */
 const webpackConfig = require('./webpack.base')
 
+webpackConfig.mode = 'development'
+
 webpackConfig.output.publicPath = `http://localhost:${config.port}/`
 
 // Adds special browser code as entry point, see dev-client.js.
@@ -34,7 +36,7 @@ for (const key in webpackConfig.entry) {
 }
 
 webpackConfig.plugins.push(
-  new FriendlyErrorsWebpackPlugin({
+  /*new FriendlyErrorsWebpackPlugin({
     clearConsole: false,
     additionalTransformers: [
       function (error) { // StyleLint transformer.
@@ -63,12 +65,11 @@ webpackConfig.plugins.push(
         return []
       }
     ]
-  }),
-  new StyleLintPlugin({
+  }),*/
+  /*new StyleLintPlugin({
     emitErrors: false
-  }),
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoEmitOnErrorsPlugin()
+  }),*/
+  new webpack.HotModuleReplacementPlugin()
 )
 
 webpackConfig.module.rules.forEach(rule => {

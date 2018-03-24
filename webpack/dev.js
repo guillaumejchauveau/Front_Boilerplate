@@ -18,7 +18,7 @@ const webpackConfig = require('./webpack.dev')
 
 // Reloads browser if updated file is HTML.
 webpackConfig.plugins.push(function () {
-  this.plugin('after-emit', (compilation, compileCallback) => {
+  this.hooks.afterEmit.tap('HTMLReload', (compilation) => {
     for (const assetName in compilation.assets) {
       if (compilation.assets.hasOwnProperty(assetName) &&
         assetName.match(/\.html$/) &&
@@ -26,8 +26,6 @@ webpackConfig.plugins.push(function () {
         hotMiddleware.publish({action: 'reload'})
       }
     }
-
-    compileCallback()
   })
 })
 
@@ -51,7 +49,7 @@ const server = new WebpackDevServer(compiler, {
 
 server.use(hotMiddleware)
 
-server.listen(config.port, err => {
+server.listen(config.port, 'localhost', err => {
   if (err) {
     throw err
   }

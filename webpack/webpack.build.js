@@ -2,7 +2,6 @@
  * @file Build webpack configuration.
  */
 
-const webpack = require('webpack')
 const webpackSources = require('webpack-sources')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlMinifierPlugin = require('html-minifier-webpack-plugin')
@@ -21,10 +20,12 @@ const config = require('./config')
  */
 const webpackConfig = require('./webpack.base')
 
+webpackConfig.mode = 'production'
+
 webpackConfig.plugins.push(
   new ExtractTextPlugin('css/[name].css'), // Extracts CSS chunks.
   function () {
-    this.plugin('emit', (compilation, compileCallback) => {
+    this.hooks.emit.tap('build', compilation => {
       // Generates CSS load code for each extracted CSS chunks.
       let cssChunksLoad = ''
       compilation.chunks.forEach(chunk => {
@@ -48,28 +49,24 @@ webpackConfig.plugins.push(
                                    .replace('<!--CSS-CHUNKS-LOAD-->', cssChunksLoad)
         assets[htmlAssetName] = new webpackSources.RawSource(processedHtml)
       })
-
-      compileCallback()
     })
   },
   new OptimizeCssAssetsPlugin({
     cssProcessorOptions: config.optimize.cssnano
   }),
-  new webpack.optimize.UglifyJsPlugin(config.optimize.uglifyjs),
   new ImageminPlugin(config.optimize.imagemin),
-  new HtmlMinifierPlugin(config.optimize.htmlminifier),
+  new HtmlMinifierPlugin(config.optimize.htmlminifier, {verbose: true}),
   new ProgressBarPlugin()
 )
 
 webpackConfig.module.rules.forEach(rule => {
   // Marks all CSS rules to extract their result.
   if (rule.use && rule.use.includes('css-loader')) {
-    rule.loader = ExtractTextPlugin.extract({use: rule.use})
-    delete rule['use']
+    rule.use = ExtractTextPlugin.extract({use: rule.use})
   }
   // Fixes the path to url-loaded assets since by default it is relative to the HTML files (now it's relative to the
   // CSS files).
-  if (rule.loader && rule.loader === 'url-loader') {
+  if (rule.loader && (rule.loader === 'url-loader' || rule.loader === 'file-loader')) {
     rule.query.publicPath = `../`
   }
 })

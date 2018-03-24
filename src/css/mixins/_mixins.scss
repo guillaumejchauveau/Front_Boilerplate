@@ -1,0 +1,13 @@
+//
+// Mixins.
+//
+
+@mixin button-reset {
+  margin:     0;
+  padding:    0;
+  border:     none;
+  background: none;
+  color:      $text__color;
+  outline:    none;
+  text-align: left;
+}

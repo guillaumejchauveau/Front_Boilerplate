@@ -1,19 +1,8 @@
 language: node_js
 node_js:
-  - 6 # LTS NodeJS version.
-
-addons:
-  # Code Climate coverage reporting.
-  code_climate:
-    repo_token: $CODECLIMATE_TOKEN
+  - 8 # LTS NodeJS version.
 
 cache: yarn
 
 script:
   - npm run build
-  - npm test
-
-after_success:
-  # Code Climate coverage reporting.
-  - npm install -g codeclimate-test-reporter
-  - codeclimate-test-reporter < coverage/lcov.info

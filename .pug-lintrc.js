@@ -1,7 +1,7 @@
 /**
  * @file Pug-lint configuration.
  */
-//12
+
 module.exports = {
   disallowAttributeConcatenation: true,
   disallowAttributeInterpolation: true,
