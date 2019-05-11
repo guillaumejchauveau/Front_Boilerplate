@@ -5,7 +5,7 @@
 ### Building
 Building with [Webpack](https://webpack.js.org).
 ### Linting
-Linting with [ESLint](https://eslint.org), following [Standard](https://standardjs.com) rules, [StyleLint](https://stylelint.io), [HTMLHint](https://htmlhint.com/) and [Pug-lint](https://github.com/pugjs/pug-lint).
+Linting with [ESLint](https://eslint.org), following [Standard](https://standardjs.com) rules, [StyleLint](https://stylelint.io), [HTMLHint](https://htmlhint.io/) and [Pug-lint](https://github.com/pugjs/pug-lint).
 ### Integrations
 This project provides integrations with:
   - [Git](https://git-scm.com)
